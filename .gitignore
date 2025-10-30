@@ -1,0 +1,4 @@
+.air.toml
+*.exe
+tmp/
+todo.md
