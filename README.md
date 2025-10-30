@@ -5,21 +5,21 @@
     git clone <repo_url>
 ```
 
-### Run 
+### Run to install dependencies
 ```bash
-    go mod tidy
+    go get
 ```
 
 ### Build(Creates executable)
 ```bash
-    go build
+    go build .\cmd\api\main.go
 ```
 Run executable file, API will run on localhost port 6733.
 
 ### Run directly
 API will run on localhost port 6733.
 ```bash
-    go run ./main.go
+    go run .\cmd\api\main.go
 
 ```
 
