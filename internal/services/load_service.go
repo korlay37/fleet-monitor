@@ -7,8 +7,8 @@ import (
 	"github.com/korlay37/fleet-monitor/internal/helpers"
 )
 
-func GetDevicesFromFile() ([]string, error) {
-	devices, err := os.ReadFile("devices.csv")
+func GetDevicesFromFile(devicesFile string) ([]string, error) {
+	devices, err := os.ReadFile(devicesFile)
 	if err != nil {
 		return []string{}, err
 	}

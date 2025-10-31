@@ -9,15 +9,17 @@
 ```bash
     go get
 ```
+### Set up environment variables
+The program uses DEVICES_FILE and PORT env variables, if not found will default to "devices.csv" and 6733.
 
 ### Build(Creates executable)
 ```bash
     go build .\cmd\api\main.go
 ```
-Run executable file, API will run on localhost port 6733.
+Run executable file.
 
 ### Run directly
-API will run on localhost port 6733.
+API will run on localhost and the PORT sent in env or 6733.
 ```bash
     go run .\cmd\api\main.go
 

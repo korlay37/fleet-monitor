@@ -2,3 +2,4 @@
 *.exe
 tmp/
 todo.md
+.env
