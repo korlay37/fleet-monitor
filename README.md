@@ -35,6 +35,20 @@ Docker will build the "fleet-monitor" image and run a "fleet-monitor" container
 
 ## Solution description
 
+**Important note**: while writting tests for the application I noticed that even though following the given formula for **uptime** exactly matches the results in the generated results.txt, the formula seems to be wrong because of my following reasoning:
+
+The formula being: 
+```
+uptime = (sumHeartbeats / numMinutesBetweenFirstAndLastHeartbeat) * 100
+```
+
+The formula takes into consideration the minutes between the first and last heartbeat but not the total heartbeats that should have been received in that timelapse, example given:
+If the first heartbeat is received at 00:00:00
+And the last heartbeat is received at 00:02:00
+The numMinutesBetweenFirstAndLastHeartbeat would be 2, if we use the given formula, and we missed the heartbeat from minute 00:01:00, the uptime would still result 100%.
+
+Conclusion: Since I was told to write production ready code, I decided to go with the formula that would give me the correct results when testing and not the correct expected result by the generated results.txt file.
+
 ### Architecture design decisions:
 - I used Gin for the web framework because it seems to be simple, fast and with good performance according to online resources. It seems mature and well maintained. Has JSON built in ssupport and supports middlewares that would allow to easily add more features like authentication if needed.
 - I used Zap for logging because according to my quick investigation, Go's log package is not as good as Zap, also, Zap supports logging levels, and easy to log JSONs for structured logging (to be hooked to Grafana, Datadog, Logz.io or others).
