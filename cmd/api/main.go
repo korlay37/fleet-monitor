@@ -21,7 +21,7 @@ func main() {
 
 	err := godotenv.Load()
 	if err != nil {
-		sugar.Errorw("Error loading .env file, continuing without it", "error", err)
+		sugar.Infow("Error loading .env file, continuing without it", "error", err)
 	}
 	devicesFile := os.Getenv("DEVICES_FILE")
 	if devicesFile == "" {
