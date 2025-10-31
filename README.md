@@ -7,7 +7,7 @@
 
 ### Run to install dependencies
 ```bash
-    go get
+    go mod download
 ```
 ### Set up environment variables
 The program uses DEVICES_FILE and PORT env variables, if not found will default to "devices.csv" and 6733.
