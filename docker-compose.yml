@@ -1,0 +1,10 @@
+name: fleet-monitor
+services:
+  fleet-monitor:
+    build: .
+    image: fleet-monitor
+    container_name: fleet-monitor
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env

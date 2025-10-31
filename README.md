@@ -4,7 +4,7 @@
 ```bash
     git clone <repo_url>
 ```
-
+## Run locally
 ### Run to install dependencies
 ```bash
     go mod download
@@ -23,6 +23,12 @@ API will run on localhost and the PORT sent in env or 6733.
 ```bash
     go run .\cmd\api\main.go
 
+```
+## Run container (must have docker installed)
+#### Requires .env file with variables DEVICES_FILE and PORT
+Docker will build the "fleet-monitor" image and run a "fleet-monitor" container
+```bash
+    docker compose up --build -d
 ```
 
 
