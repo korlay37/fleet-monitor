@@ -18,7 +18,9 @@ func CleanDevicesData(lines []string) []string {
 }
 
 func CalculateUptime(heartbeats []time.Time) float64 {
-	if len(heartbeats) < 2 {
+	if len(heartbeats) == 0 {
+		return 0.0
+	} else if len(heartbeats) < 2 {
 		return 100.0
 	}
 	uptime := (float64(len(heartbeats)) / heartbeats[len(heartbeats)-1].Sub(heartbeats[0]).Minutes()) * 100
@@ -26,6 +28,9 @@ func CalculateUptime(heartbeats []time.Time) float64 {
 }
 
 func CalculateAverageUploadTime(uploadTimes []int) string {
+	if len(uploadTimes) == 0 {
+		return "0m0.000000000s"
+	}
 	var sum float64
 	for _, value := range uploadTimes {
 		sum += float64(value)
