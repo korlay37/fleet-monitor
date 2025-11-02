@@ -31,6 +31,10 @@ Docker will build the "fleet-monitor" image and run a "fleet-monitor" container
     docker compose up --build -d
 ```
 
+## Run Tests
+```bash
+go test ./tests/...
+```
 
 
 ## Solution description
@@ -61,6 +65,8 @@ Conclusion: Since I was told to write production ready code, I decided to go wit
 Around 8 hours, which include "Golang research/learn" like using the docs, and skimming through a Udemy course and youtube videos to learn/understand Golang concepts.
 
 The most difficult part was figuring out that I had to use a Mutex, something I did not foresee and I am still getting up to speed with advanced usage of pointers, go routines, channels and mutex.
+
+Update: I did not have enough time to figure out the testing for the http requests, gin and zap(logging).
 
 #### How would you modify your data model or code to account for more kinds of metrics?
 
