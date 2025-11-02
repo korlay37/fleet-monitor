@@ -15,6 +15,8 @@ type DeviceData struct {
 	DeviceID    string
 	Heartbeats  []time.Time
 	UploadTimes []int
+	UploadSum   int
+	UploadCount int
 }
 
 type StatsResponse struct {

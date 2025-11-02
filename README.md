@@ -74,4 +74,5 @@ Expand the DeviceData model to add other device information that could be import
 
 #### Discuss your solution’s runtime complexity
 
-Up to this first iteration I think looping through the uploadTimes might be the slowest part, I am also concerned about the locking with mutex but need further research to improve it, if I have time available I will look into optimizing more the code. 
+In the last iteration of the code I improved the average upload time calculation by having a total sum in my model instead of having to loop over the whole upload times array when calculating it.
+Need more investigation about the locking with mutex.

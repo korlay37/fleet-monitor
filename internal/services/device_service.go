@@ -50,7 +50,10 @@ func PostDeviceStats(context *gin.Context) {
 	devicesMapMutex.Lock()
 	device, exists := DevicesMap[id]
 	if exists {
+		// Keeping Upload times for future use, if needed.
 		device.UploadTimes = append(device.UploadTimes, statsRequest.UploadTime)
+		device.UploadSum += statsRequest.UploadTime
+		device.UploadCount++
 		DevicesMap[id] = device
 		context.JSON(http.StatusNoContent, nil)
 	} else {
@@ -67,7 +70,7 @@ func GetDeviceStats(context *gin.Context) {
 	device, exists := DevicesMap[id]
 	if exists {
 		uptime := helpers.CalculateUptime(device.Heartbeats)
-		avgUploadTime := helpers.CalculateAverageUploadTime(device.UploadTimes)
+		avgUploadTime := helpers.CalculateAverageUploadTime(device.UploadSum, device.UploadCount)
 		context.JSON(http.StatusOK, models.StatsResponse{
 			Uptime:        uptime,
 			AvgUploadTime: avgUploadTime,
