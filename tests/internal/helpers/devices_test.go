@@ -118,3 +118,53 @@ func TestCalculateUptime(t *testing.T) {
 		}
 	}
 }
+
+func TestCalculateAverageUploadTime(t *testing.T) {
+	type testCase struct {
+		uploadTimes []int
+		expected    string
+	}
+	tests := []testCase{
+		{
+			uploadTimes: []int{},
+			expected:    "0m0.000000000s",
+		},
+		{
+			uploadTimes: []int{
+				1000000000,
+				2000000000,
+			},
+			expected: "0m1.500000000s",
+		},
+		{
+			uploadTimes: []int{
+				1000000000,
+				2000000000,
+				3000000000,
+			},
+			expected: "0m2.000000000s",
+		},
+		{
+			uploadTimes: []int{
+				100000000000,
+				100000000000,
+				100000000000,
+				100000000000,
+				100000000000,
+				100000000000,
+				100000000000,
+				100000000000,
+				300000000000,
+				400000000000,
+			},
+			expected: "2m30.000000000s",
+		},
+	}
+
+	for _, test := range tests {
+		result := helpers.CalculateAverageUploadTime(test.uploadTimes)
+		if result != test.expected {
+			t.Errorf("Expected %v, got %v", test.expected, result)
+		}
+	}
+}
